@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  persona_tags: MyText
+  descriptive_tags: MyText
+  company: one
+  project: one
+  user: one
+
+two:
+  persona_tags: MyText
+  descriptive_tags: MyText
+  company: two
+  project: two
+  user: two
