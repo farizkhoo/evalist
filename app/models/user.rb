@@ -2,6 +2,7 @@ class User < ApplicationRecord
   include Clearance::User
 
    has_many :authentications, dependent: :destroy
+   has_and_belongs_to_many :projects
 
 	def self.create_with_auth_and_hash(authentication, auth_hash)
 		user = self.create!(
