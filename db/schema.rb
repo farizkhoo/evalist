@@ -25,6 +25,10 @@ ActiveRecord::Schema.define(version: 2018_07_03_142439) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,4 +45,5 @@ ActiveRecord::Schema.define(version: 2018_07_03_142439) do
   end
 
   add_foreign_key "authentications", "users"
+
 end
