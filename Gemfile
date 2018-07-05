@@ -43,6 +43,11 @@ gem "clearance"
 gem "figaro"
 
 gem 'omniauth'
+gem 'bootstrap', '~> 4.1.1'
+gem 'toastr-rails'
+gem 'font-awesome-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # linkedin omniauth login
 gem 'omniauth-linkedin-oauth2'
