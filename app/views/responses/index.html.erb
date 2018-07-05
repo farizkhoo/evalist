@@ -1,0 +1,15 @@
+
+  <%@user.projects.each do |p|%>
+  <%=p.name%>
+  <%@project = Project.find(p.id)%>
+  <%@projectuser = @project.users%>
+  <%@projectuser.each do |pu|%>
+  <%if pu != current_user %>
+  <%= pu.name %>
+  <%=link_to "review", new_response_path(user_id: pu.id, project_id: @project.id)%>
+  <%end%>
+  <%end%> 
+  <%end%> 
+
+
+
