@@ -79,4 +79,5 @@ ActiveRecord::Schema.define(version: 2018_07_05_074935) do
   add_foreign_key "authentications", "users"
   add_foreign_key "responses", "projects"
   add_foreign_key "responses", "questions"
+
 end
