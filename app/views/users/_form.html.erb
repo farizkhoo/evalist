@@ -1,9 +1,33 @@
-<div class="text-field">
-  <%= form.label :email %>
-  <%= form.text_field :email, type: 'email' %>
-</div>
+<div class="row">
+  <div class="col-md-4 offset-md-4 text-center">
 
-<div class="password-field">
-  <%= form.label :password %>
-  <%= form.password_field :password %>
+    <h2>Sign up</h2>
+    <div class="form-group">
+
+      <%= form.text_field :name, class: "form-control", placeholder: "name" %>
+    </div>
+
+    <div class="form-group">
+
+      <%= form.email_field :email, class: "form-control", placeholder: "email" %>
+    </div>
+
+    <div class="form-group">
+
+      <%= form.password_field :password, class: "form-control", placeholder: "enter a password" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.text_field :phone, class: "form-control", placeholder: "phone"%>
+    </div>
+
+    <div class="actions">
+        <%= form.submit "Sign up", class: "btn btn-primary" %> 
+    </div>
+
+    <div class="actions">
+      <%= link_to t(".sign_in"), sign_in_path, class: "btn btn-light" %>
+    </div>
+
+  </div>
 </div>
