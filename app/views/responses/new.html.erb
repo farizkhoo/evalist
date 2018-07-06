@@ -18,7 +18,7 @@
  
  <li><%=q.question%></br>
  	<select name="responses[<%= q.id %>]">
- <!-- <option hidden disabled value selected> -- select an option -- </option> -->
+ <option hidden disabled value selected> -- select an option -- </option>
   <option value="1">Strongly Disagree</option>
   <option value="2">Disagree</option>
   <option value="3">Neutral</option>
@@ -29,5 +29,7 @@
 <% end %>
  </ul></br>
 
- <div><%= submit_tag 'Save' %></div>
+ <div id="button"><%= submit_tag 'Save' %></div>
+
+ 
 <%end%>
