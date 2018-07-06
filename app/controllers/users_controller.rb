@@ -1,18 +1,50 @@
+# frozen_string_literal: true
+
 class UsersController < Clearance::UsersController
-	def edit
-		@user = current_user
-	end
+  def create
+    @user = User.new(register_params)
+    if @user.save
+      redirect_to sign_in_path
+    else
+      @errors = 'please enter correct values'
+      render new_user_path
+    end
+  end
 
-	def update
-		@user = current_user
-		@user.update(users_params)
-		@user.update(password: params[:user][:password]) if params[:user][:password].length != 0
+  def show
+    @user = User.find(params[:id])
+  end
 
-		redirect_to edit_user_path, :flash => {:success => "User successfully updated!"} 
-	end
+  def edit
+    @user = User.find(params[:id])
+  end
 
-	private
-	def users_params
-		params.require(:user).permit(:name, :email, :phone)
-	end
+  def update
+    if User.find(params[:id]).update(edit_user_params)
+      redirect_to user_path
+    else
+      @errors = 'please enter correct values'
+      redirect_to(edit_user_path)
+    end
+  end
+
+  private
+
+  def register_params
+    params.require(:user).permit(
+      :name,
+      :email,
+      :phone,
+      :password,
+      :birthdate,
+      :gender
+    )
+  end
+
+  def edit_user_params
+    params.require(:user).permit(
+      :job_title,
+      :about
+    )
+  end
 end

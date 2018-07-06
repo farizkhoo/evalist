@@ -1,0 +1,44 @@
+<h1>Your Account</h1>
+<%= form_for @user do %>
+  <div>
+    First name :
+    <br>
+    <%= @user.name %>
+  </div>
+  <br>
+  <div>
+    Job Title :
+    <br>
+    <%= @user.job_title %>
+  </div>
+  <br>
+  <div>
+    E-mail :
+    <br>
+    <%= @user.email %>
+  </div>
+  <br>
+  <div>
+    Phone number :
+    <br>
+    <%= @user.phone %>
+  </div>
+  <br>
+  <div>
+    Date of birth :
+    <br>
+    <%= @user.birthdate %>
+  </div>
+  <br>
+  <div>
+    About :
+    <br>
+    <%= @user.about %>
+  </div>
+  <br>
+<% end %>
+<%=
+  if current_user = @user
+    button_to 'Edit Account', edit_user_path(@user), method: :get
+  end
+%>
