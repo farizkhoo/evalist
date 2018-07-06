@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2018_07_05_074935) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
- master
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -77,7 +76,6 @@ ActiveRecord::Schema.define(version: 2018_07_05_074935) do
     t.string "birthdate"
     t.text "about"
     t.string "gender"
-
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

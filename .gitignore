@@ -30,3 +30,6 @@
 
 # Ignore .idea
 /.idea
+
+# Ignore
+/db/schema.rb

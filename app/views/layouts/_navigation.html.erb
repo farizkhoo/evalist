@@ -8,12 +8,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-
         <ul class="navbar-nav ml-auto">
-            
-
-            
-
             
             <% if current_user.nil? %>
 
@@ -22,10 +17,9 @@
             
             <% else  %>
     
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <%= image_tag avatar_url(current_user), class: "rounded-circle avatar-small" %> <%= current_user.name %>
+                       
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item"<%= link_to 'My Rating' %> </a>
