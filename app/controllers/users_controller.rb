@@ -11,20 +11,40 @@ class UsersController < Clearance::UsersController
     end
   end
 
-  def show; end
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    if User.find(params[:id]).update(edit_user_params)
+      redirect_to user_path
+    else
+      @errors = 'please enter correct values'
+      redirect_to(edit_user_path)
+    end
+  end
 
   private
 
   def register_params
     params.require(:user).permit(
-      :first_name,
-      :last_name,
+      :name,
       :email,
-      :phone_number,
+      :phone,
+      :password,
+      :birthdate,
+      :gender
+    )
+  end
+
+  def edit_user_params
+    params.require(:user).permit(
       :job_title,
-      :gender,
-      :date_of_birth,
-      :password
+      :about
     )
   end
 end

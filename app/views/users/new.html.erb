@@ -1,16 +1,10 @@
 <h1>New Account</h1>
 <%= @errors %>
-<%= form_for @user do |form|%>
+<%= form_for @user do |form| %>
   <div>
-    First name :
+    Name :
     <br>
-    <%= form.text_field :first_name %>
-  </div>
-  <br>
-  <div>
-    Last name :
-    <br>
-    <%= form.text_field :last_name %>
+    <%= form.text_field :name %>
   </div>
   <br>
   <div>
@@ -26,15 +20,15 @@
   </div>
   <br>
   <div>
-    Password :
+    Phone number :
     <br>
-    <%= form.text_field :phone_number %>
+    <%= form.number_field :phone %>
   </div>
   <br>
   <div>
     Date of birth :
     <br>
-    <%= form.date_field :date_of_birth %>
+    <%= form.date_field :birthdate %>
   </div>
   <br>
   <div>
@@ -45,5 +39,5 @@
     <%= form.radio_button :gender, 'Others' %> Others<br>
   </div>
   <br>
-  <%= form.submit 'Create Account'%>
+  <%= form.submit 'Create Account' %>
 <% end %>
