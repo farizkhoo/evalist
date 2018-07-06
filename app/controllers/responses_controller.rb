@@ -12,22 +12,12 @@ def new
 end 
 
 def create
-	@response = Response.new(sender_id: current_user.id, recipient_id: params[:recipient_id], value: 1, project_id: params[:project_id], question_id: 1)
-	if @response.save
-		@response.errors
-	redirect_to root_path
+	params[:responses].each do |x,y|
+		@response = Response.new(sender_id: current_user.id, recipient_id: params[:recipient_id], value: y, project_id: params[:project_id], question_id: x)
+		@response.save
 	end
 
-	@response.errors
-
-
-	# params[:responses].each do |x,y|
-	# 	@response = Response.new(sender_id: current_user.id, recipient_id: params[:recipient_id], value: y, project_id: params[:project_id], question_id: x)
-	# 	@response.save
-	# 	@response.errors
-	# end
-
-	# redirect_to root_path
+	redirect_to user_path(current_user), :flash => { :success => "Review submitted!" }
 end 
 
 

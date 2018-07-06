@@ -4,7 +4,7 @@
   <div>
     Name :
     <br>
-    <%= @user.name %>
+    <%= form.text_field :name %>
   </div>
   <br>
   <div>
@@ -16,25 +16,27 @@
   <div>
     E-mail :
     <br>
-    <%= @user.email %>
+    <%= form.text_field :email %>
   </div>
   <br>
   <div>
     Phone number :
     <br>
-    <%= @user.phone %>
+    <%= form.text_field :phone %>
   </div>
   <br>
   <div>
     Date of birth :
     <br>
-    <%= @user.birthdate %>
+    <%= form.date_field :birthdate %>
   </div>
   <br>
   <div>
     Gender :
     <br>
-    <%= @user.gender %><br>
+    <%= form.radio_button :gender, 'Male' %> Male<br>
+    <%= form.radio_button :gender, 'Female' %> Female<br>
+    <%= form.radio_button :gender, 'Others' %> Others<br><br>
   </div>
   <div>
     About :

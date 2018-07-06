@@ -2,7 +2,7 @@
 
 class UsersController < Clearance::UsersController
   def create
-    @user = User.new(register_params)
+    @user = User.new(user_params)
     if @user.save
       redirect_to sign_in_path
     else
@@ -20,7 +20,7 @@ class UsersController < Clearance::UsersController
   end
 
   def update
-    if User.find(params[:id]).update(edit_user_params)
+    if User.find(params[:id]).update(user_params)
       redirect_to user_path
     else
       @errors = 'please enter correct values'
@@ -30,7 +30,7 @@ class UsersController < Clearance::UsersController
 
   private
 
-  def register_params
+  def user_params
     params.require(:user).permit(
       :name,
       :email,
@@ -41,10 +41,5 @@ class UsersController < Clearance::UsersController
     )
   end
 
-  def edit_user_params
-    params.require(:user).permit(
-      :job_title,
-      :about
-    )
-  end
+  
 end

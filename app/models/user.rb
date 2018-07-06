@@ -5,13 +5,9 @@ class User < ApplicationRecord
   validates_presence_of(
     :name,
     :email,
-    :phone,
     :password,
-    :birthdate,
-    :gender,
     on: :create
   )
-  validates_numericality_of(:phone)
 
   has_many :authentications, dependent: :destroy
   has_and_belongs_to_many :projects
