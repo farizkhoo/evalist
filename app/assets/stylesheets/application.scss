@@ -8,30 +8,34 @@ body {
     margin-bottom: 50px
     }
 
+    .nav-padding {
+        padding: 5px 70px;
+    }
     .navbar .navbar-brand {
         color: #242222;
         font-size: 2em;
         font-weight: 400;
-        margin-left:90px !important;
+        display: flex; 
+        // margin-left:90px !important;
     }
 
     a.nav-link {
         color:rgb(236, 68, 12) !important;
     }
     
-    .navbar{
+    .transparent{
         background-color: transparent !important;
     }
 
     .headerimg{
-        margin-top: -100px;
+        margin-top: -150px;
         padding-top: 120px;
         background-image: url('bgimage.jpg');
         background-size: cover;
-        height: 550px;
+        height: 600px;
     }
     .banner-txt{
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.2);
         padding: 50px;
         color: #e6e6e6;
     }
