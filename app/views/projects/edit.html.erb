@@ -1,0 +1,10 @@
+<h1>Edit <%= @project.name %></h1>
+
+<%= form_for @project, method: :patch, controller: "projects#update" do |form| %>
+    <%= render partial: '/projects/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+
+  <% end %>	

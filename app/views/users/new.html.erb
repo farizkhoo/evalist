@@ -1,10 +1,45 @@
+<h1>New Account</h1>
+<%= @errors %>
 <div id="clearance" class="sign-up">
-
-
-  <%= form_for @user do |form| %>
-    <%= render partial: '/users/form', object: form %>
-
-    
-
-  <% end %>
-</div>
+<%= form_for @user do |form| %>
+  <div>
+    Name :
+    <br>
+    <%= form.text_field :name %>
+  </div>
+  <br>
+  <div>
+    E-mail :
+    <br>
+    <%= form.text_field :email %>
+  </div>
+  <br>
+  <div>
+    Password :
+    <br>
+    <%= form.password_field :password %>
+  </div>
+  <br>
+  <div>
+    Phone number :
+    <br>
+    <%= form.number_field :phone %>
+  </div>
+  <br>
+  <div>
+    Date of birth :
+    <br>
+    <%= form.date_field :birthdate %>
+  </div>
+  <br>
+  <div>
+    Gender :
+    <br>
+    <%= form.radio_button :gender, 'Male' %> Male<br>
+    <%= form.radio_button :gender, 'Female' %> Female<br>
+    <%= form.radio_button :gender, 'Others' %> Others<br>
+  </div>
+  <br>
+  <%= form.submit 'Create Account' %>
+<% end %>
+  </div>

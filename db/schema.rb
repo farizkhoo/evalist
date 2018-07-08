@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_075450) do
+ActiveRecord::Schema.define(version: 2018_07_08_220507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,6 @@ ActiveRecord::Schema.define(version: 2018_07_04_075450) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
-  create_table "project_users", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "project_id"
-    t.index ["project_id"], name: "index_project_users_on_project_id"
-    t.index ["user_id"], name: "index_project_users_on_user_id"
-  end
-
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -39,6 +32,14 @@ ActiveRecord::Schema.define(version: 2018_07_04_075450) do
     t.datetime "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "owner_id"
+  end
+
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.index ["project_id"], name: "index_projects_users_on_project_id"
+    t.index ["user_id"], name: "index_projects_users_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -60,6 +61,15 @@ ActiveRecord::Schema.define(version: 2018_07_04_075450) do
     t.index ["question_id"], name: "index_responses_on_question_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.boolean "reviewed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,6 +81,10 @@ ActiveRecord::Schema.define(version: 2018_07_04_075450) do
     t.string "phone"
     t.string "password"
     t.integer "role", default: 0
+    t.string "job_title"
+    t.date "birthdate"
+    t.text "about"
+    t.string "gender"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
