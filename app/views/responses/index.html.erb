@@ -1,4 +1,8 @@
 
+  <% if current_user.nil? %>
+  <%= link_to 'please sign in', root_path %>
+  <% else %>
+  <%if @user.projects != nil%>
   <%@user.projects.each do |p|%>
   <%=p.name%>
   <%@project = Project.find(p.id)%>
@@ -10,6 +14,10 @@
   <%end%>
   <%end%> 
   <%end%> 
+  <%else%>
+  no projects assigned yet
+  <%end%>
+ <%end%> 
 
 
 
