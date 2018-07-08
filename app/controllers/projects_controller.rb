@@ -49,20 +49,19 @@ class ProjectsController < ApplicationController
 			@user_excluded_list << user.id
 		end
 		@project_owner = User.find(@project.owner_id)
-		@users = User.where.not(id: @project_owner.id)
 		@users = User.where("id NOT IN (?)", @user_excluded_list)
-
+		@reviews = Review.where("project_id = ? AND sender_id = ? AND reviewed = ?", @project.id, current_user.id, false)
 	end
 
 	def complete_project
 		@project = Project.find(params[:project_id])
 		@project.completed = true
 		if @project.save
-			# @project.users.each do |sender|
-			# 	@project.users.where.not(id: sender.id).each do |recipient|
-			# 		Review.create([sender_id: sender.id, recipient_id: recipient.id])
-			# 	end
-			# end
+			@project.users.each do |sender|
+				@project.users.where.not(id: sender.id).each do |recipient|
+					Review.create([project_id: @project.id, sender_id: sender.id, recipient_id: recipient.id])
+				end
+			end
 
 			redirect_to project_path(@project.id), :flash => { :success => "#{@project.name} completed!"}
 		else

@@ -9,7 +9,12 @@
 			<% @project.users.each_with_index do |user,index| %>
 			<li> <%= user.name %>
 				<% if current_user != user && @project.completed == true%>
+					<% @review = Review.find_by("project_id = ? AND sender_id = ? AND recipient_id = ?", @project.id, current_user.id, user.id) %>
+					<% if @review.reviewed == false%>
 					<%= link_to "Review!", new_response_path(user_id: user.id, project_id: @project.id) %>
+					<% else %>
+						Already reviewed!
+					<% end %>
 				<% end %>
 			</li>
 			<% end %>
