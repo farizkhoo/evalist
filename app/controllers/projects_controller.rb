@@ -44,12 +44,45 @@ class ProjectsController < ApplicationController
 	def show
 		@project = Project.find(params[:id])
 		@project_users = @project.users
+		@user_excluded_list = []
+		@project_users.each do |user|
+			@user_excluded_list << user.id
+		end
 		@project_owner = User.find(@project.owner_id)
+		@users = User.where.not(id: @project_owner.id)
+		@users = User.where("id NOT IN (?)", @user_excluded_list)
+
+	end
+
+	def complete_project
+		@project = Project.find(params[:project_id])
+		@project.completed = true
+		if @project.save
+			# @project.users.each do |sender|
+			# 	@project.users.where.not(id: sender.id).each do |recipient|
+			# 		Review.create([sender_id: sender.id, recipient_id: recipient.id])
+			# 	end
+			# end
+
+			redirect_to project_path(@project.id), :flash => { :success => "#{@project.name} completed!"}
+		else
+			redirect_to project_path(@project.id), :flash => { :error => "Failed to complete #{@project.name}!"}
+		end
 	end
 
 	def your_projects
 		@user = current_user
 		@projects = @user.projects
+	end
+
+	def add_users
+		@user = User.find(params[:user_id])
+		@project = Project.find(params[:project_id])
+		if @project.users << @user
+			redirect_to project_path(@project.id), :flash => { :success => "#{@user.name} successfully added to #{@project.name}!"}
+		else
+			redirect_to project_path(@project.id), :flash => { :error => "Failed to add #{@user.name} to #{@project.name}!"}
+		end
 	end
 
 	private

@@ -1,26 +1,28 @@
 class ResponsesController < ApplicationController 
 
-def index
-@user = current_user
-end
-
-def new
-@recipient = User.find(params[:user_id]) 
-@sender = current_user	
-@project = Project.find(params[:project_id])
-@response = Response.new 
-end 
-
-def create
-	params[:responses].each do |x,y|
-		@response = Response.new(sender_id: current_user.id, recipient_id: params[:recipient_id], value: y, project_id: params[:project_id], question_id: x)
-		@response.save
+	def index
+		@user = current_user
 	end
 
-	redirect_to user_path(current_user), :flash => { :success => "Review submitted!" }
-end 
+	def new
+		@questions = Question.all.order(:category)
+		@recipient = User.find(params[:user_id]) 
+		@sender = current_user	
+		@project = Project.find(params[:project_id])
+		@response = Response.new
+		@categories = []
+		@questions.select(:category).distinct.each do |c|
+			@categories << c.category
+		end
+	end 
 
+	def create
+		params[:responses].each do |x,y|
+			@response = Response.new(sender_id: current_user.id, recipient_id: params[:recipient_id], value: y, project_id: params[:project_id], question_id: x)
+			@response.save
+		end
 
-
+		redirect_to user_path(current_user), :flash => { :success => "Review submitted!" }
+	end 
 end
 
