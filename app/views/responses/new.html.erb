@@ -1,3 +1,4 @@
+<div class="container">
 <h1>Reviewing <%= @recipient.name%> for <%= @project.name %></h1>
 <h3>Please enter the score corresponding to the degree to which you agree with the following statements about <%= @recipient.name %></h3>
 
@@ -32,6 +33,7 @@
 	<%= f.submit 'Submit review', disabled: true, class: "btn btn-primary active", id: "submit-button" %>
 	<div id="submit-error" style="color: red;">Please fill in all questions.</div>
 <%end%>
+</div>
 
 <script type="text/javascript">
 	$("input").on("click", function(){
