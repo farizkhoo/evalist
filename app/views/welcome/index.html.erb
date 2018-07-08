@@ -1,8 +1,10 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>Welcome <%= @user.name %></h1>
+<p></p>
 
 <div><%= link_to 'New Project', new_project_path %></div>
 <div><%= link_to 'Your Projects', your_projects_path %></div>
+<div><%= link_to 'View Projects', projects_path %></div>
+
 
 <% if current_user.nil? %>
   <div><%= link_to 'Sign in', sign_in_path, method: :get %></div>
