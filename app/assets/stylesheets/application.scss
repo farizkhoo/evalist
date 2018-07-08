@@ -3,17 +3,39 @@
 @import "font-awesome";
 
 body {  
-    margin-top: 90px;
+    padding-top: 100px;
     color: #565a5c;
     margin-bottom: 50px
     }
 
     .navbar .navbar-brand {
-        color: #564949;
+        color: #242222;
         font-size: 2em;
         font-weight: 400;
-        margin-left:111px !important;
+        margin-left:90px !important;
     }
+
+    a.nav-link {
+        color:rgb(236, 68, 12) !important;
+    }
+    
+    .navbar{
+        background-color: transparent !important;
+    }
+
+    .headerimg{
+        margin-top: -100px;
+        padding-top: 120px;
+        background-image: url('bgimage.jpg');
+        background-size: cover;
+        height: 550px;
+    }
+    .banner-txt{
+        background: rgba(0, 0, 0, 0.5);
+        padding: 50px;
+        color: #e6e6e6;
+    }
+  
 
     .btn-primary.btn {
         border: 1px solid #ff5a5f;
@@ -52,6 +74,32 @@ body {
         margin-top: 10px; 
     }
 
+    .service-headline{
+        margin-top: 70px;
+    }
+
+    .service-headline h2::after {
+        border: 1px solid #333;
+        bottom: -20px;
+        content: "";
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+        right: 0;
+        width: 40%;
+    }
+    .services {
+        margin-top: 20px;
+        padding: 60px;
+    }
+    
+    .services-icon {
+        color: #444;
+        display: inline-block;
+        font-size: 36px;
+        line-height: 36px;
+        margin-bottom: 20px;
+    }
     
 
 

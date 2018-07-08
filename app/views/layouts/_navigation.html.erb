@@ -1,40 +1,46 @@
+<div class="">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand"<%= link_to image_tag("logo.png", id:"logo", class:"d-inline-block align-baseline mr-2", width:"20", height:"30") + "Evalist", root_path %></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" <%= link_to 'Evalist', root_path %></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav ml-auto">
-            
-            <% if current_user.nil? %>
+            <ul class="navbar-nav ml-auto">
+                
+                
+                <% if current_user.nil? %>
 
-               <a class="nav-link"<%= link_to 'Signup', sign_up_path, method: :get %></a>
-                <a class="nav-link"<%= link_to 'Sign in', sign_in_path, method: :get %></a>
-            
-            <% else  %>
-    
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item"<%= link_to 'My Rating' %> </a>
-                        <a class="dropdown-item"<%= link_to 'My Projects'%> </a>
-                        <a class="dropdown-item"<%= link_to 'My trips' %> </a>
-                        <a class="dropdown-item" <%= link_to 'Edit my profile' %></a>
+                <a class="nav-link"<%= link_to 'Signup', sign_up_path, method: :get %></a>
+                    <a class="nav-link"<%= link_to 'Sign in', sign_in_path, method: :get %></a>
+                
+                <% else  %>
+        
 
-                        
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" <%= link_to 'Sign out', sign_out_path, method: :delete %></a>
-                    </div>
-                </li>
-            
-            <% end %>
-        </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%= image_tag avatar_url(current_user), class: "rounded-circle avatar-small" %> <%= current_user.name %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item"<%= link_to 'New Project', new_project_path %> </a>
+                            <a class="dropdown-item"<%= link_to 'Your Projects', your_projects_path %> </a>
+                            <a class="dropdown-item"<%= link_to 'View Projects', projects_path %> </a>
+                            <a class="dropdown-item" <%= link_to 'Edit my profile', user_path(current_user) %></a>
 
-    </div>
-</nav>
+                            
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" <%= link_to 'Sign out', sign_out_path, method: :delete %></a>
+                        </div>
+                    </li>
+                
+                <% end %>
+            </ul>
+
+        </div>
+    </nav>
+
+
+</div>
