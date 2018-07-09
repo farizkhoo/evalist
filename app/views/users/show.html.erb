@@ -2,7 +2,11 @@
   <div>
     Avatar :
     <br>
-    <img src="<%= @user.avatar %>" width="100">
+    <% if @user.avatar.nil? %>
+      <%= image_tag('/assets/default-image.png', size: '100') %>
+    <% else %>
+      <img src="<%= @user.avatar %>" width="100">
+    <% end %>
   </div>
   <br>
   <div>
