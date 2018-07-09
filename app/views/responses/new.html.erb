@@ -14,11 +14,15 @@
 
 			<li>
 				<%=q.question%></br>
-				<input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="1"> Strongly Disagree 
-				<input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="2"> Disagree
-				<input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="3"> Neutral
-				<input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="4"> Agree 
-				<input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="5"> Strongly Agree	
+				<div class="container">
+					<div class="row">
+						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="1"> Strongly Disagree</label>
+						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="2"> Disagree</label>
+						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="3"> Neutral</label>
+						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="4"> Agree</label>
+						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="5"> Strongly Agree</label>
+					</div>
+				</div>
 			</li>
 
 			<% if index != @questions.count - 1 %>
