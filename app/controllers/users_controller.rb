@@ -76,6 +76,16 @@ end
     end
   end
 
+  def upload_avatar
+    @user = current_user
+    render 'users/upload'
+  end
+
+  def update_avatar
+    @user = current_user
+    @user.update(avatar: params[:user][:avatar])
+  end
+
   def user_profile
     @user = current_user
   end
