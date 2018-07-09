@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 2018_07_08_220507) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
+  create_table "project_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -33,13 +40,6 @@ ActiveRecord::Schema.define(version: 2018_07_08_220507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id"
-  end
-
-  create_table "projects_users", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "project_id"
-    t.index ["project_id"], name: "index_projects_users_on_project_id"
-    t.index ["user_id"], name: "index_projects_users_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
