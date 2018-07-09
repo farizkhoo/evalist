@@ -52,6 +52,39 @@ end
 
   def show
     @user = User.find(params[:id])
+    if Response.find_by(recipient_id: @user.id)
+      @responses = Response.where("recipient_id = ?", @user.id)
+      @leadership_scores = []
+      @commercial_scores = []
+      @aptitude_scores = []
+      @teamwork_scores = []
+      @innovation_scores = []
+
+      @responses.each do |response|
+        if response.question.category == "leadership"
+          @leadership_scores << response.value
+        elsif response.question.category == "commercial"
+          @commercial_scores << response.value
+        elsif response.question.category == "aptitude"
+          @aptitude_scores << response.value
+        elsif response.question.category == "teamwork"
+          @teamwork_scores << response.value
+        else
+          @innovation_scores << response.value
+        end
+      end
+      @total_leadership_score = @leadership_scores.inject(:+)
+      @total_commercial_score = @commercial_scores.inject(:+)
+      @total_aptitude_score = @aptitude_scores.inject(:+)
+      @total_teamwork_score = @teamwork_scores.inject(:+)
+      @total_innovation_score = @innovation_scores.inject(:+)
+
+      @average_leadership_score = @leadership_scores.inject(:+)/@leadership_scores.count
+      @average_commercial_score = @commercial_scores.inject(:+)/@commercial_scores.count
+      @average_aptitude_score = @aptitude_scores.inject(:+)/@aptitude_scores.count
+      @average_teamwork_score = @teamwork_scores.inject(:+)/@teamwork_scores.count
+      @average_innovation_score = @innovation_scores.inject(:+)/@innovation_scores.count
+    end
   end
 
   def edit
