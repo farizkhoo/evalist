@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_07_08_220507) do
     t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "Cat"
     t.index ["project_id"], name: "index_responses_on_project_id"
     t.index ["question_id"], name: "index_responses_on_question_id"
   end
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 2018_07_08_220507) do
     t.date "birthdate"
     t.text "about"
     t.string "gender"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

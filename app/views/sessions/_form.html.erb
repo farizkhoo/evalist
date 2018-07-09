@@ -16,7 +16,7 @@
       </div>
 
       <div class="actions">
-        <%= form.submit "Sign in", class: "btn btn-primary" %> 
+        <%= form.submit "Sign in", class: "btn btn-primary btn-block" %> 
       </div>
 
       <br>
@@ -25,14 +25,14 @@
         <% if Clearance.configuration.allow_sign_up? %>
 
           
-            <a class="btn btn-info"<%= link_to "/auth/linkedin" do %>
+            <a class="btn btn-info btn-block"<%= link_to "/auth/linkedin" do %>
               <i class="fa fa-linkedin"></i> Login with LinkedIn  
             <% end %>
         <% end %>
         
         <br>
         <hr>
-        <%= link_to "Forgot Password?", new_password_path, class:"btn btn-primary btn-sm" %>
+        <%= link_to "Forgot Password?", new_password_path, class:"btn btn-light btn-sm" %>
       </div>
     <% end %>
   </div>

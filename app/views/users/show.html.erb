@@ -3,6 +3,13 @@
   <div>
     First name :
     <br>
+    <%= @user.avatar %>
+  </div>
+  <br>
+  <%= button_to "Upload Avatar", upload_avatar_path, method: :get %>
+  <div>
+    First name :
+    <br>
     <%= @user.name %>
   </div>
   <br>
@@ -42,3 +49,4 @@
     button_to 'Edit Account', edit_user_path(@user.id), method: :get
   end
 %>
+
