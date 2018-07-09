@@ -1,10 +1,139 @@
-<h1>All Projects</h1>
-
-<% @projects.each_with_index do |project,index| %>
-	<div>
-		<span><%= index+1 %>. <%= link_to project.name, project_path(project.id) %></span>
+<div class="project-body">
+	<div class="col-md-4 offset-md-1">
+		<h2>All Projects</h2>
 	</div>
 
-<% end %>
 
-	
+
+	<div class="container card-list row">
+		<div class="card blue col-md-4">
+			<div class="title">all projects</div><span class="glyphicon glyphicon-upload"></span>
+			<div class="value">89</div>
+			<div class="stat"><b>13</b>% increase</div>
+		</div>
+		<div class="card green col-md-4">
+			<div class="title">team members</div><span class="glyphicon glyphicon-upload"></span>
+			<div class="value">5,990</div>
+			<div class="stat"><b>4</b>% increase</div>
+		</div>
+		<div class="card orange col-md-4">
+			<div class="title">total budget</div><span class="glyphicon glyphicon-download"></span>
+			<div class="value">$80,990</div>
+			<div class="stat"><b>13</b>% decrease</div>
+		</div>
+	</div><br>
+
+	<div class="container projects">
+		<div class=" row projects-inner col-md-12">
+			<header class="projects-header row">
+
+			<div class="count mr-auto"><h5>32 Projects</h5></div><span class="glyphicon glyphicon-download-alt"></span>
+			</header>
+			<table class="projects-table">
+				<thead>
+					<tr>
+						<th>Project</th>
+						<th>Deadline</th>
+						<th>Leader + Team</th>
+						<th>Budget</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+			<tr>
+				<td>
+				<p>New Dashboard</p>
+
+				</td>
+				<td>
+				<p>17th Apr, 18</p>
+				<p class="danger-text">Overdue</p>
+				</td>
+				<td class="member">
+				<figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+				<div class="member-info">
+					<p>Myrtle Erickson</p>
+					<p>UK Design Team</p>
+				</div>
+				</td>
+				<td>
+				<p>$4,670</p>
+				<p>Paid</p>
+				</td>
+				<td class="status"><span class="status-text status-orange">In progress</span>
+				<form class="form" action="#" method="POST">
+					<select class="action-box">
+					<option>Actions</option>
+					<option>Start project</option>
+					<option>Send for QA</option>
+					<option>Send invoice</option>
+					</select>
+				</form>
+				</td>
+			</tr>
+			<tr class="danger-item">
+				<td>
+				<p>New Dashboard</p>
+
+				</td>
+				<td>
+				<p>17th Apr, 18</p>
+				<p class="danger-text">Overdue</p>
+				</td>
+				<td class="member">
+				<figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+				<div class="member-info">
+					<p>Myrtle Erickson</p>
+					<p>UK Design Team</p>
+				</div>
+				</td>
+				<td>
+				<p>$4,670</p>
+				<p>Paid</p>
+				</td>
+				<td class="status"><span class="status-text status-red">Blocked</span>
+				<form class="form" action="#" method="POST">
+					<select class="action-box">
+					<option>Actions</option>
+					<option>Start project</option>
+					<option>Send for QA</option>
+					<option>Send invoice</option>
+					</select>
+				</form>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<p>New Dashboard</p>
+
+				</td>
+				<td>
+				<p>17th Apr, 18</p>
+				<p class="danger-text">Overdue</p>
+				</td>
+				<td class="member">
+				<figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+				<div class="member-info">
+					<p>Myrtle Erickson</p>
+					<p>UK Design Team</p>
+				</div>
+				</td>
+				<td>
+				<p>$4,670</p>
+				<p>Paid</p>
+				</td>
+				<td class="status"><span class="status-text status-orange">In progress</span>
+				<form class="form" action="#" method="POST">
+					<select class="action-box">
+					<option>Actions</option>
+					<option>Start project</option>
+					<option>Send for QA</option>
+					<option>Send invoice</option>
+					</select>
+				</form>
+				</td>
+			
+			</table>
+		</div>
+	</div>
+
+</div>
