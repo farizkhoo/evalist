@@ -1,0 +1,13 @@
+<h1>Upload Avatar</h1>
+
+<%= form_for @user, url: update_avatar_path do |form| %>
+
+  <div class="image_field">
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar %>
+  </div>
+
+  <div class="submit">
+    <%= form.submit %>
+  </div>
+<% end %>

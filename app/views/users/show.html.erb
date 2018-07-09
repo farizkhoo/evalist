@@ -1,12 +1,10 @@
 <h1>Your Account</h1>
-<%= form_for @user do %>
   <div>
-    First name :
+    Avatar :
     <br>
-    <%= @user.avatar %>
+    <img src="<%= @user.avatar %>" width="100">
   </div>
   <br>
-  <%= button_to "Upload Avatar", upload_avatar_path, method: :get %>
   <div>
     First name :
     <br>
@@ -43,7 +41,6 @@
     <%= @user.about %>
   </div>
   <br>
-<% end %>
 <%=
   if current_user = @user
     button_to 'Edit Account', edit_user_path(@user.id), method: :get
