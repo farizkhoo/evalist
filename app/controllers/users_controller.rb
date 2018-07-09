@@ -11,8 +11,6 @@ class UsersController < Clearance::UsersController
     end
   end
 
-<<<<<<< Updated upstream
-=======
   def profile
     @user = current_user
 
@@ -32,10 +30,7 @@ class UsersController < Clearance::UsersController
       @response_sender_id_count = 0
       @rp_value = 0
 
-      @response_project = Response.where(
-        'recipient_id = ? AND project_id = ?',
-        current_user, pr.id
-      )
+      @response_project = Response.where('recipient_id = ? AND project_id = ?', current_user, pr.id)
       @response_sender_id = @response_project.map(&:sender_id)
 
       @response_sender_id.each do |rs|
@@ -55,7 +50,6 @@ class UsersController < Clearance::UsersController
     end
 end
 
->>>>>>> Stashed changes
   def show
     @user = User.find(params[:id])
   end
@@ -81,6 +75,10 @@ end
   def update_avatar
     @user = current_user
     @user.update(avatar: params[:user][:avatar])
+  end
+
+  def user_profile
+    @user = current_user
   end
 
   private

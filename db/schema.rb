@@ -10,12 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 2018_07_06_094409) do
 =======
 ActiveRecord::Schema.define(version: 2018_07_08_220507) do
 >>>>>>> Stashed changes
 
+=======
+ActiveRecord::Schema.define(version: 2018_07_08_220507) do
+  
+>>>>>>> 6535aa3420760e8c03fcd3c07babbadeee67543e
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,8 +66,18 @@ ActiveRecord::Schema.define(version: 2018_07_08_220507) do
     t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "Cat"
     t.index ["project_id"], name: "index_responses_on_project_id"
     t.index ["question_id"], name: "index_responses_on_question_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.boolean "reviewed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
