@@ -11,45 +11,6 @@ class UsersController < Clearance::UsersController
     end
   end
 
-  def profile
-    @user = current_user
-
-    @now = DateTime.now
-    @project_ranked = []
-    @average_project_scores = {}
-
-    @user.projects.each do |p|
-      @response = Response.where('recipient_id = ? AND project_id = ?', current_user, p.id)
-
-      next unless @now > p.deadline
-      @project_ranked << p if @response.length >= 25
-    end
-
-    @project_ranked&.each do |pr|
-      @response_sender_id_orginal = nil
-      @response_sender_id_count = 0
-      @rp_value = 0
-
-      @response_project = Response.where('recipient_id = ? AND project_id = ?', current_user, pr.id)
-      @response_sender_id = @response_project.map(&:sender_id)
-
-      @response_sender_id.each do |rs|
-        if @response_sender_id_orginal != rs
-          @response_sender_id_orginal = rs
-          @response_sender_id_count += 1
-       end
-      end
-
-      @response_project.each do |rp|
-        @rp_value = rp_value + rp.value
-      end
-
-      @response_projects_people_questions = @response_sender_id_count * 25
-      @average_project_score = @rp_value / @response_projects_people_questions
-      @average_project_scores[:pr.id] = @average_project_score
-    end
-end
-
   def show
     @user = User.find(params[:id])
   end
@@ -77,9 +38,7 @@ end
     @user.update(avatar: params[:user][:avatar])
   end
 
-  def user_profile
-    @user = current_user
-  end
+ 
 
   private
 
