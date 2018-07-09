@@ -50,6 +50,7 @@ class UsersController < Clearance::UsersController
 
   def edit
     @user = User.find(params[:id])
+    
   end
 
   def update
