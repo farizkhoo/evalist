@@ -16,12 +16,17 @@
                         <a class="nav-link"<%= link_to 'Sign in', sign_in_path, method: :get %></a>
                     
                     <% else  %>
-                        <li class="nav-item"><span class="navbar-text">Logged in as</span></li>
+
                         <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= image_tag current_user.avatar.url, class: "rounded-circle avatar-small" %>   
+          <%= current_user.name %>
+        </a>
+                       <!--  <li class="nav-item"><span class="navbar-text">Logged in as</span></li>
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             
                                 <%= current_user.name  %>
-                            </a>
+                            </a> -->
                             <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item"<%= link_to 'My Profile', user_path(current_user) %> </a>
                                 <a class="dropdown-item"<%= link_to 'My Projects', your_projects_path %></a>

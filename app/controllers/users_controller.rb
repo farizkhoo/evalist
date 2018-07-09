@@ -15,45 +15,7 @@ class UsersController < Clearance::UsersController
     @users = User.all
   end
 
-#   def profile
-#     @user = current_user
 
-#     @now = DateTime.now
-#     @project_ranked = []
-#     @average_project_scores = {}
-
-#     @user.projects.each do |p|
-#       @response = Response.where('recipient_id = ? AND project_id = ?', current_user, p.id)
-
-#       next unless @now > p.deadline
-#       @project_ranked << p if @response.length >= 25
-#     end
-
-#     @project_ranked&.each do |pr|
-#       @response_sender_id_orginal = nil
-#       @response_sender_id_count = 0
-#       @rp_value = 0
-
-#       @response_project = Response.where('recipient_id = ? AND project_id = ?', current_user, pr.id)
-#       @response_sender_id = @response_project.map(&:sender_id)
-
-#       @response_sender_id.each do |rs|
-#         if @response_sender_id_orginal != rs
-#           @response_sender_id_orginal = rs
-#           @response_sender_id_count += 1
-#        end
-#       end
-
-#       @response_project.each do |rp|
-#         @rp_value = rp_value + rp.value
-#       end
-
-#       @response_projects_people_questions = @response_sender_id_count * 25
-#       @average_project_score = @rp_value / @response_projects_people_questions
-#       @average_project_scores[:pr.id] = @average_project_score
-#     end
-# end
-# end
 
   def your_reviews
     @user = current_user
@@ -95,6 +57,64 @@ class UsersController < Clearance::UsersController
       @average_teamwork_score = @total_teamwork_score/@teamwork_scores.count
       @average_innovation_score = @total_innovation_score/@innovation_scores.count
     end
+
+    @user = current_user
+  
+  @now = DateTime.now
+  @project_ranked = []
+  @average_project_scores ={}
+ 
+
+       @user.projects.each do |p|
+        @response= Response.where("recipient_id = ? AND project_id = ?", current_user, p.id)
+
+        if @now > p.deadline
+          if @response.length >= 25
+            @project_ranked << p
+          end
+        end 
+      end 
+
+if !@project_ranked.empty?
+ 
+        @project_ranked.each do |pr|
+        
+        @response_sender_id_orginal = nil
+        @response_sender_id_count = 0
+        @rp_value = 0
+
+        @response_project= Response.where("recipient_id = ? AND project_id = ?", current_user, pr.id)
+        @response_sender_id = @response_project.map{|x|x.sender_id}
+          
+          @response_sender_id.each do |rs|
+            if @response_sender_id_orginal != rs
+            @response_sender_id_orginal = rs
+            @response_sender_id_count =  @response_sender_id_count + 1
+           end 
+        end
+
+          @response_project.each do |rp|
+          @rp_value = @rp_value + rp.value
+          end
+        
+          @response_projects_people_questions = @response_sender_id_count*25
+          @average_project_score = @rp_value/@response_projects_people_questions
+          @average_project_scores[pr.name.to_sym]= @average_project_score 
+         
+         
+         
+      end
+
+      
+      @total_projects = @project_ranked.length
+      @total_average = 0
+        @average_project_scores.each do |x,y|
+          @total_average = @total_average + y
+        end 
+         @average_score_user=@total_average/@total_projects
+         @last_project = @project_ranked.sort{|a,b| a.deadline <=> b.deadline}.last
+         @last_score_user= @average_project_scores[@last_project.name.to_sym]
+end
   end
 
   def edit
