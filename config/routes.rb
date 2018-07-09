@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'responses/ranking' => 'responses#ranking'
   resources :responses 
   resources :questions
   resources :users
 
-  get 'questions/tags' => 'questions#tags'
   root 'welcome#index'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
