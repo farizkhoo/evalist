@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :users
 
+
   get 'questions/tags' => 'questions#tags'
   root 'welcome#index'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
