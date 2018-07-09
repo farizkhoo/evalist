@@ -76,6 +76,10 @@ end
     end
   end
 
+  def user_profile
+    @user = current_user
+  end
+
   private
 
   def user_params

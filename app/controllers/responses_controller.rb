@@ -1,18 +1,5 @@
 class ResponsesController < ApplicationController 
 
-def index
-@user = current_user
-end
-
-def new	
-@question = Question.all	
-@recipient = User.find(params[:user_id]) 
-@sender = current_user	
-@project = Project.find(params[:project_id])
-@response = Response.new 
-end 
-
-
  def ranking
   @user = current_user
   
@@ -30,7 +17,6 @@ end
     end
   end 
 end 
-
 
 if @project_ranked != nil
  
@@ -52,7 +38,7 @@ if @project_ranked != nil
 
     @response_project.each do |rp|
     @rp_value = rp_value + rp.value
-  end
+    end
   
     @response_projects_people_questions = @response_sender_id_count*25
     @average_project_score = @rp_value/@response_projects_people_questions
@@ -60,40 +46,46 @@ if @project_ranked != nil
    
     # @response_project_commercial= Response.where("recipient_id = ? AND project_id = ? ", current_user, pr.id)
   
-end 
+  end 
 end
+
 
 @total_projects = @project_ranked.length
 @total_average = 0
-@average_project_scores.each do |x,y|
-	@total_average = @total_average + y
-end 
- @average_score_user=@total_average/@total_projects
- @last_project = @project_ranked.sort(:deadline).last
- @last_score_user= average_project_scores[:@last_project.name]
-
-
+  @average_project_scores.each do |x,y|
+    @total_average = @total_average + y
+  end 
+   @average_score_user=@total_average/@total_projects
+   @last_project = @project_ranked.sort(:deadline).last
+   @last_score_user= average_project_scores[:@last_project.name]
 end
 
-
-def create
-	params[:responses].each do |x,y|
-	@response = 
-    Response.new(sender_id: current_user.id, 
-      recipient_id: params[:recipient_id], 
-      value: y, 
-      project_id: params[:project_id], 
-      Cat: x)
-	
-	byebug	
-	if @response.save
-        redirect_to user_path(current_user), :flash => { :success => "Review submitted!" }
+	def index
+		@user = current_user
 	end
-end
 
-end 
+	def new
+		@questions = Question.all.order(:category)
+		@recipient = User.find(params[:user_id]) 
+		@sender = current_user	
+		@project = Project.find(params[:project_id])
+		@response = Response.new
+		@categories = []
+		@questions.select(:category).distinct.each do |c|
+			@categories << c.category
+		end
+	end 
 
+	def create
+		params[:responses].each do |x,y|
+			@response = Response.new(sender_id: current_user.id, recipient_id: params[:recipient_id], value: y, project_id: params[:project_id], question_id: x)
+			@response.save
+		end
 
-
+		@review = Review.find_by(sender_id: current_user.id, recipient_id: params[:recipient_id], project_id: params[:project_id])
+		@review.reviewed = true
+		@review.save
+		redirect_to user_path(current_user), :flash => { :success => "Review submitted!" }
+	end 
 end
 
