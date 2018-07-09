@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   has_and_belongs_to_many :projects
 
+  mount_uploader :avatar, AvatarUploader
+
   def self.create_with_auth_and_hash(authentication, auth_hash)
     user = create!(
       name: auth_hash['info']['name'],

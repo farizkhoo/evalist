@@ -28,6 +28,16 @@ class UsersController < Clearance::UsersController
     end
   end
 
+  def upload_avatar
+    @user = current_user
+    render 'users/upload'
+  end
+
+  def update_avatar
+    @user = current_user
+    @user.update(avatar: params[:user][:avatar])
+  end
+
   private
 
   def user_params
