@@ -27,3 +27,9 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore .idea
+/.idea
+
+# Ignore
+/db/schema.rb
