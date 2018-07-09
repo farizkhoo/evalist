@@ -55,7 +55,7 @@ class UsersController < Clearance::UsersController
     @user = current_user
     @reviews = Review.where('sender_id = ? AND reviewed = ?', @user.id, false)
   end
-    
+
   def show
     @user = User.find(params[:id])
     if Response.find_by(recipient_id: @user.id)
@@ -85,16 +85,17 @@ class UsersController < Clearance::UsersController
       @total_teamwork_score = @teamwork_scores.inject(:+)
       @total_innovation_score = @innovation_scores.inject(:+)
 
-      @average_leadership_score = @leadership_scores.inject(:+)/@leadership_scores.count
-      @average_commercial_score = @commercial_scores.inject(:+)/@commercial_scores.count
-      @average_aptitude_score = @aptitude_scores.inject(:+)/@aptitude_scores.count
-      @average_teamwork_score = @teamwork_scores.inject(:+)/@teamwork_scores.count
-      @average_innovation_score = @innovation_scores.inject(:+)/@innovation_scores.count
+      @average_leadership_score = @total_leadership_score/@leadership_scores.count
+      @average_commercial_score = @total_commercial_score/@commercial_scores.count
+      @average_aptitude_score = @total_aptitude_score/@aptitude_scores.count
+      @average_teamwork_score = @total_teamwork_score/@teamwork_scores.count
+      @average_innovation_score = @total_innovation_score/@innovation_scores.count
     end
   end
 
   def edit
     @user = User.find(params[:id])
+    
   end
 
   def update
@@ -116,9 +117,7 @@ class UsersController < Clearance::UsersController
     @user.update(avatar: params[:user][:avatar])
   end
 
-  def user_profile
-    @user = current_user
-  end
+ 
 
   private
 

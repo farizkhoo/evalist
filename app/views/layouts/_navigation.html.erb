@@ -22,7 +22,7 @@
                                 <%= current_user.name  %>
                             </a>
                             <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"<%= link_to 'My Rating', user_path(current_user) %> </a>
+                                <a class="dropdown-item"<%= link_to 'My Profile', user_path(current_user) %> </a>
                                 <a class="dropdown-item"<%= link_to 'My Projects', projects_path(current_user.projects) %> </a>
                                 <a class="dropdown-item" <%= link_to 'Edit my profile', edit_user_path(current_user.id) %></a>
 

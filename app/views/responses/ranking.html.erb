@@ -1,1 +1,11 @@
 <h3>Rankings</h3>
+<%@count = 0%>
+<%@average_project_scores.each do |s|%>
+<%=@average_project_scores.keys[@count]%>
+<%=@average_project_scores.values[@count]%>
+<%@count = @count + 1%>
+<%end%>
+<%=@average_score_user%>
+<%=@last_project.name%>
+<%=@last_score_user%>
+
