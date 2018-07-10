@@ -7,15 +7,16 @@
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    
-                    
+                    <a class="nav-link"<%= link_to 'View Projects', projects_path, method: :get %></a>
+                    <a class="nav-link"<%= link_to 'View Users', users_path, method: :get %></a>
+
                     <% if current_user.nil? %>
 
                     <a class="nav-link"<%= link_to 'Signup', sign_up_path, method: :get %></a>
                         <a class="nav-link"<%= link_to 'Sign in', sign_in_path, method: :get %></a>
                     
                     <% else  %>
-
+                        <li class="nav-item"><span class="navbar-text">Logged in as</span></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             
@@ -23,8 +24,9 @@
                             </a>
                             <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item"<%= link_to 'My Profile', user_path(current_user) %> </a>
-                                <a class="dropdown-item"<%= link_to 'My Projects', projects_path(current_user.projects) %> </a>
-                                <a class="dropdown-item" <%= link_to 'Edit my profile', edit_user_path(current_user.id) %></a>
+                                <a class="dropdown-item"<%= link_to 'My Projects', your_projects_path %></a>
+                                <a class="dropdown-item"<%= link_to 'My Reviews', your_reviews_path %></a>
+
 
                                 
                                 <div class="dropdown-divider"></div>

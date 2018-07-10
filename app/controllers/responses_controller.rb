@@ -113,9 +113,9 @@ end
 			@response.save
 		end
 
-		# @review = Review.find_by(sender_id: current_user.id, recipient_id: params[:recipient_id], project_id: params[:project_id])
-		# @review.reviewed = true
-		# @review.save
+		@review = Review.find_by(sender_id: current_user.id, recipient_id: params[:recipient_id], project_id: params[:project_id])
+		@review.reviewed = true
+		@review.save
 		redirect_to user_path(current_user), :flash => { :success => "Review submitted!" }
 	end 
 end

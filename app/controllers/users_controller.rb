@@ -11,6 +11,10 @@ class UsersController < Clearance::UsersController
     end
   end
 
+  def index
+    @users = User.all
+  end
+
 #   def profile
 #     @user = current_user
 
@@ -129,7 +133,8 @@ class UsersController < Clearance::UsersController
       :password,
       :birthdate,
       :gender,
-      :avatar
+      :avatar,
+      :about
     )
   end
 end

@@ -20,7 +20,13 @@ body {
     }
 
     a.nav-link {
-        color:rgb(236, 68, 12) !important;
+        /*color:rgb(236, 68, 12) !important;*/
+        color: black !important;
+
+    }
+
+    .navbar-text {
+        color: black !important;
     }
     
     .transparent{
