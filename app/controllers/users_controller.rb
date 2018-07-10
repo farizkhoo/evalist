@@ -4,7 +4,7 @@ class UsersController < Clearance::UsersController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path
+      redirect_to sign_in_path
     else
       @errors = 'please enter correct values'
       render new_user_path
@@ -15,45 +15,45 @@ class UsersController < Clearance::UsersController
     @users = User.all
   end
 
-#   def profile
-#     @user = current_user
+  #   def profile
+  #     @user = current_user
 
-#     @now = DateTime.now
-#     @project_ranked = []
-#     @average_project_scores = {}
+  #     @now = DateTime.now
+  #     @project_ranked = []
+  #     @average_project_scores = {}
 
-#     @user.projects.each do |p|
-#       @response = Response.where('recipient_id = ? AND project_id = ?', current_user, p.id)
+  #     @user.projects.each do |p|
+  #       @response = Response.where('recipient_id = ? AND project_id = ?', current_user, p.id)
 
-#       next unless @now > p.deadline
-#       @project_ranked << p if @response.length >= 25
-#     end
+  #       next unless @now > p.deadline
+  #       @project_ranked << p if @response.length >= 25
+  #     end
 
-#     @project_ranked&.each do |pr|
-#       @response_sender_id_orginal = nil
-#       @response_sender_id_count = 0
-#       @rp_value = 0
+  #     @project_ranked&.each do |pr|
+  #       @response_sender_id_orginal = nil
+  #       @response_sender_id_count = 0
+  #       @rp_value = 0
 
-#       @response_project = Response.where('recipient_id = ? AND project_id = ?', current_user, pr.id)
-#       @response_sender_id = @response_project.map(&:sender_id)
+  #       @response_project = Response.where('recipient_id = ? AND project_id = ?', current_user, pr.id)
+  #       @response_sender_id = @response_project.map(&:sender_id)
 
-#       @response_sender_id.each do |rs|
-#         if @response_sender_id_orginal != rs
-#           @response_sender_id_orginal = rs
-#           @response_sender_id_count += 1
-#        end
-#       end
+  #       @response_sender_id.each do |rs|
+  #         if @response_sender_id_orginal != rs
+  #           @response_sender_id_orginal = rs
+  #           @response_sender_id_count += 1
+  #        end
+  #       end
 
-#       @response_project.each do |rp|
-#         @rp_value = rp_value + rp.value
-#       end
+  #       @response_project.each do |rp|
+  #         @rp_value = rp_value + rp.value
+  #       end
 
-#       @response_projects_people_questions = @response_sender_id_count * 25
-#       @average_project_score = @rp_value / @response_projects_people_questions
-#       @average_project_scores[:pr.id] = @average_project_score
-#     end
-# end
-# end
+  #       @response_projects_people_questions = @response_sender_id_count * 25
+  #       @average_project_score = @rp_value / @response_projects_people_questions
+  #       @average_project_scores[:pr.id] = @average_project_score
+  #     end
+  # end
+  # end
 
   def your_reviews
     @user = current_user
@@ -63,7 +63,7 @@ class UsersController < Clearance::UsersController
   def show
     @user = User.find(params[:id])
     if Response.find_by(recipient_id: @user.id)
-      @responses = Response.where("recipient_id = ?", @user.id)
+      @responses = Response.where('recipient_id = ?', @user.id)
       @leadership_scores = []
       @commercial_scores = []
       @aptitude_scores = []
@@ -71,13 +71,13 @@ class UsersController < Clearance::UsersController
       @innovation_scores = []
 
       @responses.each do |response|
-        if response.question.category == "leadership"
+        if response.question.category == 'leadership'
           @leadership_scores << response.value
-        elsif response.question.category == "commercial"
+        elsif response.question.category == 'commercial'
           @commercial_scores << response.value
-        elsif response.question.category == "aptitude"
+        elsif response.question.category == 'aptitude'
           @aptitude_scores << response.value
-        elsif response.question.category == "teamwork"
+        elsif response.question.category == 'teamwork'
           @teamwork_scores << response.value
         else
           @innovation_scores << response.value
@@ -89,17 +89,17 @@ class UsersController < Clearance::UsersController
       @total_teamwork_score = @teamwork_scores.inject(:+)
       @total_innovation_score = @innovation_scores.inject(:+)
 
-      @average_leadership_score = @total_leadership_score/@leadership_scores.count
-      @average_commercial_score = @total_commercial_score/@commercial_scores.count
-      @average_aptitude_score = @total_aptitude_score/@aptitude_scores.count
-      @average_teamwork_score = @total_teamwork_score/@teamwork_scores.count
-      @average_innovation_score = @total_innovation_score/@innovation_scores.count
+      @average_leadership_score = @total_leadership_score / @leadership_scores.count
+      @average_commercial_score = @total_commercial_score / @commercial_scores.count
+      @average_aptitude_score = @total_aptitude_score / @aptitude_scores.count
+      @average_teamwork_score = @total_teamwork_score / @teamwork_scores.count
+      @average_innovation_score = @total_innovation_score / @innovation_scores.count
     end
   end
 
   def edit
     @user = User.find(params[:id])
-    
+    redirect_to root_path if current_user != @user
   end
 
   def update
@@ -120,8 +120,6 @@ class UsersController < Clearance::UsersController
     @user = current_user
     @user.update(avatar: params[:user][:avatar])
   end
-
- 
 
   private
 

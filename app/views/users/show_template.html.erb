@@ -1,0 +1,43 @@
+
+<div class="container">
+  <h1>Your Account</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <ul class= "sidebar-list">
+        <%= link_to 'New Project', new_project_path, class: 'sidebar-link active' %></br>
+        <%= link_to 'Your Projects',  your_projects_path, class: 'sidebar-link active' %></br>
+        <%= link_to 'View Projects', projects_path, class: 'sidebar-link active' %></br>
+        <%= link_to 'Reviews', your_reviews_path, class: 'sidebar-link active' %></br>
+        <%= link_to 'Edit Account', edit_user_path(@user.id), class: 'sidebar-link active' %>
+      </ul>
+    </div>
+
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="panel panel-default">
+            <div class="panel-heading">Profile</div>
+            <div class="panel-body">
+              <img src="<%= @user.avatar %>" width="100" class="avatar-full"></br>
+              Leadership score: <%= @average_leadership_score %></br>
+              Aptitude score: <%= @average_aptitude_score %></br>
+              Commercial score: <%= @average_commercial_score %></br>
+              Teamwork score: <%= @average_teamwork_score %></br>
+              Innovation score: <%= @average_innovation_score %></br>
+
+
+              Name: <%= @user.name %></br>
+              Job Title: <%= @user.job_title %></br>
+              Email:  <%= @user.email %></br>
+              Phone Number: <%= @user.phone %></br>
+              Date of Birth: <%= @user.birthdate %></br>
+              About: <%= @user.about %></br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+
