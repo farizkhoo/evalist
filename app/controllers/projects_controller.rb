@@ -39,6 +39,8 @@ class ProjectsController < ApplicationController
 
 	def index
 		@projects = Project.all
+		@users = User.all
+		@completed_reviews = Review.where(reviewed: true)
 	end
 
 	def show
