@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   post "projects/complete_project" => "projects#complete_project", as: "complete_project"
   get "/user" => "users#user_profile", as: "user_profile"
   get '/users/upload' => 'users#upload_avatar', as: 'upload_avatar'
+  get '/your_reviews' => 'users#your_reviews', as: 'your_reviews'
 end

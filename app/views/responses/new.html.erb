@@ -3,8 +3,8 @@
 <h3>Please enter the score corresponding to the degree to which you agree with the following statements about <%= @recipient.name %></h3>
 
 <%= form_for @response do |f|%>
-	<input type="hidden", name="recipient_id", value="<%=@recipient.id%>">
-	<input type="hidden", name="project_id", value="<%=@project.id%>">
+	<input type="hidden" name="recipient_id" value="<%=@recipient.id%>">
+	<input type="hidden" name="project_id" value="<%=@project.id%>">
 		<%= category = nil %>
 		<% @questions.each_with_index do |q,index|%>
 			<% if q.category != category %>

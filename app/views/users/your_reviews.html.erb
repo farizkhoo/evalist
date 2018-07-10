@@ -1,0 +1,11 @@
+<h1>Your pending reviews</h1>
+
+
+<% @reviews.each do |review| %>
+	<% project = Project.find(review.project_id) %>
+	<% recipient = User.find(review.recipient_id) %>
+	<div>
+		<%= recipient.name %> for <%= project.name %>
+		<%= link_to "Review!", new_response_path(user_id: recipient.id, project_id: project.id) %>
+	</div>
+<% end %>
