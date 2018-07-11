@@ -5,6 +5,7 @@ class UsersController < Clearance::UsersController
     @user = User.new(user_params)
     if @user.save
       redirect_to sign_in_path
+
     else
       @errors = 'please enter correct values'
       render new_user_path
@@ -57,7 +58,8 @@ class UsersController < Clearance::UsersController
 
   def your_reviews
     @user = current_user
-    @reviews = Review.where('sender_id = ? AND reviewed = ?', @user.id, false)
+    @reviews = Review.where('sender_id = ?', @user.id).order(:reviewed)
+    @pending_reviews = Review.where('sender_id = ? AND reviewed = ?', @user.id, false)
   end
 
   def show
@@ -89,11 +91,11 @@ class UsersController < Clearance::UsersController
       @total_teamwork_score = @teamwork_scores.inject(:+)
       @total_innovation_score = @innovation_scores.inject(:+)
 
-      @average_leadership_score = @total_leadership_score / @leadership_scores.count
-      @average_commercial_score = @total_commercial_score / @commercial_scores.count
-      @average_aptitude_score = @total_aptitude_score / @aptitude_scores.count
-      @average_teamwork_score = @total_teamwork_score / @teamwork_scores.count
-      @average_innovation_score = @total_innovation_score / @innovation_scores.count
+      @average_leadership_score = @total_leadership_score.to_f/@leadership_scores.count
+      @average_commercial_score = @total_commercial_score.to_f/@commercial_scores.count
+      @average_aptitude_score = @total_aptitude_score.to_f/@aptitude_scores.count
+      @average_teamwork_score = @total_teamwork_score.to_f/@teamwork_scores.count
+      @average_innovation_score = @total_innovation_score.to_f/@innovation_scores.count
     end
   end
 

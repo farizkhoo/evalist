@@ -36,14 +36,25 @@ Question.create([category: 4, question: 'He/She can be assertive when needed.'])
 Question.create([category: 4, question: 'Can set objectives and follow them through to completion.'])
 Question.create([category: 4, question: 'This person displays tolerance and flexibility.'])
 
-User.create([name: 'Liyan', email:'liyan@liyan.com', password:'liyan'])
-User.create([name: 'John', email:'john@john.com', password:'john'])
-User.create([name: 'Jack', email:'jack@jack.com', password:'jack'])
-User.create([name: 'Jim', email:'jim@jim.com', password:'jim'])
-User.create([name: 'Yvonne', email:'yvonne@yvonne.com', password:'yvonne'])
-User.create([name: 'Jean', email:'jean@jean.com', password:'jean'])
-User.create([name: 'Ashley', email:'ashley@ashley.com', password:'ashley'])
-User.create([name: 'Alex', email:'alex@alex.com', password:'alex'])
-User.create([name: 'Keith', email:'keith@keith.com', password:'keith'])
-User.create([name: 'Guru', email:'guru@guru.com', password:'guru'])
+User.create([name: 'Fariz', email:'fariz@fariz.com', password:'fariz', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Engineer', gender: 'male'])
+User.create([name: 'Liyan', email:'liyan@liyan.com', password:'liyan', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Lawyer', gender: 'female'])
+User.create([name: 'John', email:'john@john.com', password:'john', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Programmer', gender: 'male'])
+User.create([name: 'Jack', email:'jack@jack.com', password:'jack', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Accountant', gender: 'male'])
+User.create([name: 'Jim', email:'jim@jim.com', password:'jim', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Manager', gender: 'male'])
+User.create([name: 'Yvonne', email:'yvonne@yvonne.com', password:'yvonne', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Manager', gender: 'female'])
+User.create([name: 'Jean', email:'jean@jean.com', password:'jean', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Manager', gender: 'female'])
+User.create([name: 'Ashley', email:'ashley@ashley.com', password:'ashley', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Clerk', gender: 'female'])
+User.create([name: 'Alex', email:'alex@alex.com', password:'alex', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Accountant', gender: 'male'])
+User.create([name: 'Keith', email:'keith@keith.com', password:'keith', phone: '012-3456789', birthdate: Date.new(1990,1,1), job_title: 'Doctor', gender: 'male'])
+
+Project.create([name: 'Project Evalist', description: 'Group project making a peer review application for NEXT academy bootcamp', owner_id: 1, completed: false, deadline: DateTime.new(2018,7,13), budget: 5000])
+project1 = Project.find(1)
+project1.users << User.find(1)
+
+
+
+
+
+
+
 

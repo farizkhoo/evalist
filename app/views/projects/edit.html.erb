@@ -1,10 +1,15 @@
-<h1>Edit <%= @project.name %></h1>
+<div class="container">
+	<div class="row">
+		<h1>Edit Project</h1>
+	</div>
+	<div class="row">
+		<%= form_for @project, method: :patch, controller: "projects#update", html: {class: "col-6"} do |form|%>
+		<%= render partial: '/projects/form', object: form %>
 
-<%= form_for @project, method: :patch, controller: "projects#update" do |form| %>
-    <%= render partial: '/projects/form', object: form %>
+	    <div class="submit-field">
+	      <%= form.submit "Edit Project", class: "btn btn-primary" %>
+	    </div>
 
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-
-  <% end %>	
+  		<% end %>	
+	</div>
+</div>
