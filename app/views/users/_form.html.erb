@@ -1,33 +1,47 @@
-<div class="row">
-  <div class="col-md-4 offset-md-4 text-center">
-
-    <h2>Sign up</h2>
     <div class="form-group">
-
+      <%= form.label :name %>
       <%= form.text_field :name, class: "form-control", placeholder: "name" %>
     </div>
 
+    <div style="display: flex; justify-content: center; align-items: center;" class="mb-4">
+      <img src="<%= @user.avatar %>" width="100px">
+    </div>
     <div class="form-group">
+      <%= form.label :avatar %>
+      <%= form.file_field :avatar, class: "form-control", placeholder: "name" %>
+    </div>
 
+    <div class="form-group">
+      <%= form.label :job_title %>
+      <%= form.text_field :job_title, class: "form-control", placeholder: "job title"%>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email %>
       <%= form.email_field :email, class: "form-control", placeholder: "email" %>
     </div>
 
     <div class="form-group">
-
-      <%= form.password_field :password, class: "form-control", placeholder: "enter a password" %>
-    </div>
-
-    <div class="form-group">
+      <%= form.label :phone %>
       <%= form.text_field :phone, class: "form-control", placeholder: "phone"%>
     </div>
 
-    <div class="actions">
-        <%= form.submit "Sign up", class: "btn btn-primary" %> 
+    <div class="form-group radio-inline">
+      <%= form.label :gender %></br>
+      <%= form.label :male %>
+      <%= form.radio_button :gender, 'Male' %>
+      <%= form.label :female %>
+      <%= form.radio_button :gender, 'Female' %>
+      <%= form.label :others %>
+      <%= form.radio_button :gender, 'Others' %>
     </div>
 
-    <div class="actions">
-      <%= link_to t(".sign_in"), sign_in_path, class: "btn btn-light" %>
+    <div class="form-group">
+      <%= form.label :birthdate %>
+      <%= form.date_field :birthdate, class: "form-control", placeholder: "birthdate"%>
     </div>
 
-  </div>
-</div>
+    <div class="form-group">
+      <%= form.label :about %>
+      <%= form.text_area :about, class: "form-control", placeholder: "about"%>
+    </div>

@@ -1,0 +1,59 @@
+<h1>Edit account</h1>
+<%= @errors %>
+
+<% current_user %>
+
+<%= form_for @user do |form| %>
+  <div>
+    Name :
+    <br>
+    <%= form.text_field :name %>
+  </div>
+  <br>
+  <div>
+    Avatar :
+    <br>
+    <%= @user.avatar %>
+    <%= form.file_field :avatar %>
+  </div>
+  <br>
+  <div>
+    Job Title :
+    <br>
+    <%= form.text_field :job_title %><br>
+  </div>
+  <br>
+  <div>
+    E-mail :
+    <br>
+    <%= form.text_field :email %>
+  </div>
+  <br>
+  <div>
+    Phone number :
+    <br>
+    <%= form.text_field :phone %>
+  </div>
+  <br>
+  <div>
+    Date of birth :
+    <br>
+    <%= form.date_field :birthdate %>
+  </div>
+  <br>
+  <div>
+    Gender :
+    <br>
+    <%= form.radio_button :gender, 'Male' %> Male<br>
+    <%= form.radio_button :gender, 'Female' %> Female<br>
+    <%= form.radio_button :gender, 'Others' %> Other<br><br>
+  </div>
+  <div>
+    About :
+    <br>
+    <%= form.text_area :about %><br>
+  </div>
+  <br>
+  <br>
+  <%= form.submit 'Submit Changes' %>
+<% end %>
