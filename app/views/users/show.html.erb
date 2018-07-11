@@ -1,43 +1,57 @@
-
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-10">-->
+<!--      <div class="card card-inverse" style="background-color: #c9ddff; border-color: #000000;">-->
+<!--        <div class="card-block">-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-14 col-sm-14">-->
 <div class="container">
-  <h1>Your Account</h1>
-  <div class="row">   
-    <div class="col-md-3">
-      <ul class= "sidebar-list">
-        <%= link_to 'New Project', new_project_path, class: 'sidebar-link active' %></br>
-        <%= link_to 'Your Projects',  your_projects_path, class: 'sidebar-link active' %></br>
-        <%= link_to 'View Projects', projects_path, class: 'sidebar-link active' %></br>
-        <%= link_to 'Reviews', your_reviews_path, class: 'sidebar-link active' %></br>
-        <%= link_to 'Edit Account', edit_user_path(@user.id), class: 'sidebar-link active' %>
-      </ul> 
+  <div class="row">
+    <div class="col-sm-4 bg-primary m-1">
+      <h1><%= @user.name %></h1>
+      <img src="<%= @user.avatar %>" width="250" class="rounded">
+      <br>
+      <br>
+      <h5>Member since, Dec 7, 2017</h5>
+      <div>Job Title: <%= @user.job_title %></div>
+      <div>Email:  <%= @user.email %></div>
+      <div>Phone Number: <%= @user.phone %></div>
+      <div>Date of Birth: <%= @user.birthdate %></div>
+      <%=
+        if current_user == @user
+          link_to 'Edit Account', edit_user_path(@user.id)
+        end
+      %>
     </div>
-
-    <div class="col-md-7">
+    <div class="col-sm-7 bg-primary m-1">
+      <h2>Description</h2>
+      <%= @user.about %>
+      <br>
+      <br>
+      <h2>User Score</h2>
       <div class="row">
-        <div class="col-md-7">
-          <div class="panel panel-default">
-            <div class="panel-heading">Profile</div>
-            <div class="panel-body">
-              <img src="<%= @user.avatar %>" width="100" class="avatar-full"></br>
-              Leadership score: <%= @average_leadership_score %></br>
-              Aptitude score: <%= @average_aptitude_score %></br>
-              Commercial score: <%= @average_commercial_score %></br>
-              Teamwork score: <%= @average_teamwork_score %></br>
-              Innovation score: <%= @average_innovation_score %></br>
-
-
-              Name: <%= @user.name %></br>
-              Job Title: <%= @user.job_title %></br>
-              Email:  <%= @user.email %></br>
-              Phone Number: <%= @user.phone %></br>
-              Date of Birth: <%= @user.birthdate %></br>
-              About: <%= @user.about %></br>
-            </div>
-          </div>
+        <div class="col-sm-6">
+          <h6>Cumulative leadership score :</h6><%= @average_leadership_score %>
+          <h6>Cumulative aptitude score :</h6><%= @average_aptitude_score %>
+          <h6>Cumulative commercial score :</h6><%= @average_commercial_score %>
+          <h6>Cumulative teamwork score :</h6><%= @average_teamwork_score %>
+          <h6>Cumulative innovation score :</h6><%= @average_innovation_score %>
+        </div>
+        <div class="col-sm-4">
+          <h6>Leadership rating :</h6><%= @average_leadership_score %>
+          <h6>Aptitude rating :</h6><%= @average_aptitude_score %>
+          <h6>Commercial rating :</h6><%= @average_commercial_score %>
+          <h6>Teamwork rating :</h6><%= @average_teamwork_score %>
+          <h6>Innovation rating :</h6><%= @average_innovation_score %>
         </div>
       </div>
     </div>
   </div>
 </div>
-      
-
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

@@ -4,6 +4,7 @@
   <div class="row">
     <h1>Edit Account</h1>
   </div>
+
   <div class="row">
     <%= form_for @user, method: :patch, controller: "users#update", html: {class: "col-6"} do |form|%>
     <%= render partial: '/users/form', object: form %>

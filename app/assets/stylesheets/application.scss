@@ -360,6 +360,12 @@ h1 {
     font-weight: normal;
 }
 
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
 .review-links {
     color: black;
 }
