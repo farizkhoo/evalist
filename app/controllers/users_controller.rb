@@ -164,6 +164,7 @@ class UsersController < Clearance::UsersController
     params.require(:user).permit(
       :name,
       :email,
+      :job_title,
       :phone,
       :password,
       :birthdate,
