@@ -1,7 +1,63 @@
-<h1>Your Projects</h1>
+<div class="project-body pb-1">
+	<div class="col-md-12 text-center p-2">
+		<h1>Your Projects</h1>
+	</div>
 
-<ul>
-	<% @projects.each do |p| %>
-	<li><%= link_to p.name, project_path(p.id) %></li>
-	<% end %>
-</ul>
+	<div class="container projects mb-2">
+		<div class="row projects-inner col-md-12">
+			<header class="projects-header row">
+
+			<div class="count mr-auto pl-2"><h5><%=@projects.count%> Projects</h5></div><span class="glyphicon glyphicon-download-alt"></span>
+			</header>
+			<table class="projects-table">
+				<thead>
+					<tr>
+						<th>Project</th>
+						<th>Deadline</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+
+			<% @projects.each do |p| %>
+			<% project_owner = User.find(p.owner_id) %>
+			<tr>
+				<td>
+				<p><%= link_to "#{p.name}", project_path(id: p.id), class: "project-links"%></p>
+
+				</td>
+				<td>
+				<p><%=p.deadline%></p>
+				<p class="danger-text"><%= Time.current > p.deadline ? "Overdue" : nil %></p>
+				</td>
+				
+				<td class="project-status">
+					<% if p.completed == true %>
+					 <div class="status-text status-green">"Completed"</div>
+					 <form class="form" action="/projects/<%=p.id%>" method="GET">
+							<select class="action-box" style="min-width: 170px;">
+							<option>Actions</option>
+							<option>Review members</option>
+							</select>
+							<input type="submit" value="Submit">
+					</form>
+					<% else %>
+					 <div class="status-text status-orange">"In progress"</div>
+					 <form class="form" action="/projects/<%=p.id%>" method="GET">
+							<select class="action-box" style="min-width: 170px;">
+							<option>Actions</option>
+							<option>Add users</option>
+							</select>
+							<input type="submit" value="Submit">
+
+					</form>
+					<% end %>
+				
+				</td>
+			</tr>
+
+<% end %>
+			</table>
+		</div>
+	</div>
+
+</div>

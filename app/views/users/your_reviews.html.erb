@@ -1,11 +1,49 @@
-<h1>Your pending reviews</h1>
-
-
-<% @reviews.each do |review| %>
-	<% project = Project.find(review.project_id) %>
-	<% recipient = User.find(review.recipient_id) %>
-	<div>
-		<%= recipient.name %> for <%= project.name %>
-		<%= link_to "Review!", new_response_path(user_id: recipient.id, project_id: project.id) %>
+<div class="project-body pb-1">
+	<div class="col-md-12 text-center p-2">
+		<h1>Your Reviews</h1>
 	</div>
+
+	<div class="container projects my-2">
+		<div class="row projects-inner col-md-12">
+			<header class="projects-header row">
+
+			<div class="count mr-auto px-2"><p class="col"><%=@pending_reviews.count%> reviews pending</p><p class="col">Click on pending status to review</p></div>
+			</header>
+			<table class="projects-table my-2">
+				<thead>
+					<tr>
+						<th>Reviewee</th>
+						<th>Project</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+
+			<% @reviews.each do |r| %>
+			<tr class="">
+				<td>
+				<%= r.recipient.name %>
+
+				</td>
+				<td>
+				<%= r.project.name %>
+				</td>
+				
+				<td class="project-status">
+					<% if r.reviewed == true %>
+						<div class="status-text status-green">Reviewed</div> 
+					<% else %>
+					<div class="row">
+						<div class="status-text status-orange project-links" style="margin-left: 15px"><%= link_to "Pending", new_response_path(user_id: r.recipient.id, project_id: r.project.id), class: "review-links" %></div>
+						
+					 </div>
+					<% end %>
+				
+				</td>
+			</tr>
+
 <% end %>
+			</table>
+		</div>
+	</div>
+
+</div>

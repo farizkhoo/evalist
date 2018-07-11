@@ -1,6 +1,5 @@
 <div class="container">
 <h1>Reviewing <%= @recipient.name%> for <%= @project.name %></h1>
-<h3>Please enter the score corresponding to the degree to which you agree with the following statements about <%= @recipient.name %></h3>
 
 <%= form_for @response do |f|%>
 	<input type="hidden" name="recipient_id" value="<%=@recipient.id%>">
@@ -9,11 +8,11 @@
 		<% @questions.each_with_index do |q,index|%>
 			<% if q.category != category %>
 				<% category = q.category %>
-				<ul><h5><%=category.capitalize%> category</h5>
+				<ul><h3><%=category.capitalize%> category</h3>
 			<%end%>
 
 			<li>
-				<%=q.question%></br>
+				<h6><%=q.question%></h6></br>
 				<div class="container">
 					<div class="row">
 						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="1"> Strongly Disagree</label>
@@ -34,7 +33,7 @@
 			<% end %>
 		<% end %>
 
-	<%= f.submit 'Submit review', disabled: true, class: "btn btn-primary active", id: "submit-button" %>
+	<%= f.submit 'Submit review', disabled: true, class: "btn btn-danger", id: "submit-button" %>
 	<div id="submit-error" style="color: red;">Please fill in all questions.</div>
 <%end%>
 </div>
@@ -43,6 +42,7 @@
 	$("input").on("click", function(){
 		var n = $("input:checked").length;
 		if (n == <%= @questions.count %>) {
+			$('#submit-button').removeClass('btn-danger').addClass('btn-primary');
 			$('#submit-button').prop('disabled', false);
 			$('#submit-error').prop('hidden', true);
 		}

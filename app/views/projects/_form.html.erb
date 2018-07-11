@@ -1,14 +1,19 @@
-<div class="text-field">
+<div class="text-field form-group">
   <%= form.label :name %>
-  <%= form.text_field :name %>
+  <%= form.text_field :name, class: "form-control", placeholder: "Please enter project name" %>
 </div>
 
-<div class="text-field">
+<div class="text-field form-group">
   <%= form.label :description %>
-  <%= form.text_area :description %>
+  <%= form.text_area :description, class: "form-control", rows: "5", placeholder: "Please enter project description" %>
 </div>
 
-<div class="datetime-field">
+<div class="number-field form-group">
+	<%= form.label :budget %>
+	<%= form.number_field :budget, class: "form-control", placeholder: "Please enter project budget" %>
+</div>
+
+<div class="datetime-field form-group">
   <%= form.label :deadline %>
-  <%= form.datetime_field :deadline %>
+  <%= form.datetime_field :deadline, class: "form-control" %>
 </div>
