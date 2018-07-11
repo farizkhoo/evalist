@@ -20,7 +20,7 @@
 	<div class="row">
 
 		<div class="m-2 bg-light px-auto">
-			<div class=""><img src="<%=@project_owner.avatar%>" width="130px" class="rounded-circle"></div>
+			<div class=""><img src="<%=@project_owner.avatar%>" width="130px" class="rounded"></div>
 		</div>
 			<div class="pl-4 pt-5 h3" style="padding-right: 75px;"><%= @project_owner.name %></div>
 		<% if current_user != @project_owner && @project.completed == true %>
@@ -41,20 +41,10 @@
 		<div class="h2">Team members</div>
 	</div>
 
-	<div class="row py-3 pl-4">
-		<%= form_tag add_users_path, :method => :post do %>
-			<input type="hidden" value="<%=@project.id%>" name="project_id">
-			<%= select_tag 'user_id', options_for_select(@users.collect{ |u| [u.name, u.id] }), id: "add-users-select" %>
-			<%= submit_tag "Add members", class: "btn btn-primary", id: "project-add-users-btn" %>
-		<% end %>
-	</div>
-
-
-
 <% @project_users.each do |user| %>
 	<div class="row">
 		<div class="m-2 bg-light px-auto">
-			<div class=""><img src="<%= user.avatar %>" width="100px" class="rounded-circle"></div>
+			<div class=""><img src="<%= user.avatar %>" width="100px" class="rounded"></div>
 		</div>
 		<div class="pl-4 pt-5 h3 col-sm-2"><%= user.name %></div>
 		<div>
@@ -88,4 +78,17 @@
 			<% end %>
 		</div>
 	<% end %>
+</div>
+
+<hr>
+<div class="container">
+  <div class="row py-3 pl-4">
+
+    <%= form_tag add_users_path, :method => :post do %>
+      <h2>Add Members</h2> <br>
+      <input type="hidden" value="<%=@project.id%>" name="project_id">
+      <%= select_tag 'user_id', options_for_select(@users.collect{ |u| [u.name, u.id] }), id: "add-users-select" %>
+      <%= submit_tag "Add members", class: "btn btn-primary", id: "project-add-users-btn" %>
+    <% end %>
+  </div>
 </div>

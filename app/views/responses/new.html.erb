@@ -1,41 +1,44 @@
 <div class="container">
-<h1>Reviewing <%= @recipient.name%> for <%= @project.name %></h1>
+<div class="container bg-white m-1" style="padding: 20px;">
+  <h1>Reviewing <%= @recipient.name%> for <%= @project.name %></h1>
+  <%= form_for @response do |f|%>
+    <input type="hidden" name="recipient_id" value="<%=@recipient.id%>">
+    <input type="hidden" name="project_id" value="<%=@project.id%>">
+    <%= category = nil %>
+    <% @questions.each_with_index do |q,index|%>
+      <% if q.category != category %>
+        <% category = q.category %>
+        <ul><h3 class="text-info"><%=category.capitalize%> category</h3>
+      <%end%>
 
-<%= form_for @response do |f|%>
-	<input type="hidden" name="recipient_id" value="<%=@recipient.id%>">
-	<input type="hidden" name="project_id" value="<%=@project.id%>">
-		<%= category = nil %>
-		<% @questions.each_with_index do |q,index|%>
-			<% if q.category != category %>
-				<% category = q.category %>
-				<ul><h3><%=category.capitalize%> category</h3>
-			<%end%>
+      <li>
+        <h6><%=q.question%></h6></br>
+        <div class="container">
+          <div class="row">
+            <label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="1"> Strongly Disagree</label>
+            <label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="2"> Disagree</label>
+            <label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="3"> Neutral</label>
+            <label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="4"> Agree</label>
+            <label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="5"> Strongly Agree</label>
+          </div>
+        </div>
+      </li>
+      <br>
+      <br>
 
-			<li>
-				<h6><%=q.question%></h6></br>
-				<div class="container">
-					<div class="row">
-						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="1"> Strongly Disagree</label>
-						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="2"> Disagree</label>
-						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="3"> Neutral</label>
-						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="4"> Agree</label>
-						<label class="col radio-inline"><input class="radio-button-input" type="radio" name="responses[<%= q.id %>]" value="5"> Strongly Agree</label>
-					</div>
-				</div>
-			</li>
+      <% if index != @questions.count - 1 %>
+        <% if category != @questions[index+1].category %>
+          </ul>
+        <% end %>
+      <% else %>
+        </ul>
+      <% end %>
+    <% end %>
 
-			<% if index != @questions.count - 1 %>
-				<% if category != @questions[index+1].category %>
-					</ul>
-				<% end %>
-			<% else %>
-				</ul>
-			<% end %>
-		<% end %>
-
-	<%= f.submit 'Submit review', disabled: true, class: "btn btn-danger", id: "submit-button" %>
-	<div id="submit-error" style="color: red;">Please fill in all questions.</div>
-<%end%>
+    <%= f.submit 'Submit review', disabled: true, class: "btn btn-danger", id: "submit-button" %>
+    <div id="submit-error" style="color: red;">Please fill in all questions.</div>
+  <%end%>
+</div>
 </div>
 
 <script type="text/javascript">
