@@ -42,11 +42,11 @@ class UsersController < Clearance::UsersController
       @total_teamwork_score = @teamwork_scores.inject(:+)
       @total_innovation_score = @innovation_scores.inject(:+)
 
-      @average_leadership_score = @total_leadership_score.to_f/@leadership_scores.count
-      @average_commercial_score = @total_commercial_score.to_f/@commercial_scores.count
-      @average_aptitude_score = @total_aptitude_score.to_f/@aptitude_scores.count
-      @average_teamwork_score = @total_teamwork_score.to_f/@teamwork_scores.count
-      @average_innovation_score = @total_innovation_score.to_f/@innovation_scores.count
+      @average_leadership_score = (@total_leadership_score.to_f/@leadership_scores.count).round(2)
+      @average_commercial_score = (@total_commercial_score.to_f/@commercial_scores.count).round(2)
+      @average_aptitude_score = (@total_aptitude_score.to_f/@aptitude_scores.count).round(2)
+      @average_teamwork_score = (@total_teamwork_score.to_f/@teamwork_scores.count).round(2)
+      @average_innovation_score = (@total_innovation_score.to_f/@innovation_scores.count).round(2)
     end
   end
   end
@@ -126,11 +126,11 @@ class UsersController < Clearance::UsersController
       @total_teamwork_score = @teamwork_scores.inject(:+)
       @total_innovation_score = @innovation_scores.inject(:+)
 
-      @average_leadership_score = @total_leadership_score.to_f/@leadership_scores.count
-      @average_commercial_score = @total_commercial_score.to_f/@commercial_scores.count
-      @average_aptitude_score = @total_aptitude_score.to_f/@aptitude_scores.count
-      @average_teamwork_score = @total_teamwork_score.to_f/@teamwork_scores.count
-      @average_innovation_score = @total_innovation_score.to_f/@innovation_scores.count
+      @average_leadership_score = (@total_leadership_score.to_f/@leadership_scores.count).round(2)
+      @average_commercial_score = (@total_commercial_score.to_f/@commercial_scores.count).round(2)
+      @average_aptitude_score = (@total_aptitude_score.to_f/@aptitude_scores.count).round(2)
+      @average_teamwork_score = (@total_teamwork_score.to_f/@teamwork_scores.count).round(2)
+      @average_innovation_score = (@total_innovation_score.to_f/@innovation_scores.count).round(2)
     end
   end
 
