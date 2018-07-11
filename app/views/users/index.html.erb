@@ -1,7 +1,7 @@
 <% @users.each do |form| %>
     <br>
     <div class="container ">
-      <div class="row text-secondary" style="padding: 10px; background: #F8F9FB;">
+      <div class="row text-secondary bg-white" style="padding: 10px;">
         <div class="col-sm-2">
           <img src="<%= form.avatar %>" width="125" class="rounded">
         </div>
@@ -12,11 +12,11 @@
           <%= form.name %> <br>
         </div>
         <div class="col-sm-5">
-          Cumulative leadership score : <%= @average_leadership_score %> <br>
-          Cumulative aptitude score : <%= @average_aptitude_score %> <br>
-          Cumulative commercial score : <%= @average_commercial_score %> <br>
-          Cumulative teamwork score : <%= @average_teamwork_score %> <br>
-          Cumulative innovation score : <%= @average_innovation_score %> <br>
+          Average leadership score : <%= @average_leadership_score %> <br>
+          Average aptitude score : <%= @average_aptitude_score %> <br>
+          Average commercial score : <%= @average_commercial_score %> <br>
+          Average teamwork score : <%= @average_teamwork_score %> <br>
+          Average innovation score : <%= @average_innovation_score %> <br>
         </div>
       </div>
     </div>

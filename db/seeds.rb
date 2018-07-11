@@ -51,6 +51,16 @@ Project.create([name: 'Project Evalist', description: 'Group project making a pe
 project1 = Project.find(1)
 project1.users << User.find(1)
 
+all_users = User.all
+all_users.each do |u|
+	Response.create(sender_id: 1, recipient_id: u.id, value: 3, project_id: 1, question_id: 1)
+	Response.create(sender_id: 1, recipient_id: u.id, value: 3, project_id: 1, question_id: 6)
+	Response.create(sender_id: 1, recipient_id: u.id, value: 3, project_id: 1, question_id: 11)
+	Response.create(sender_id: 1, recipient_id: u.id, value: 3, project_id: 1, question_id: 16)
+	Response.create(sender_id: 1, recipient_id: u.id, value: 3, project_id: 1, question_id: 21)
+end
+
+
 
 
 
