@@ -1,0 +1,91 @@
+
+<div class="container">
+	<div class="row"><h1><%= @project.name %></h1></div>
+	<div class="row"><p><%= @project.description %></p></div>
+	<div class="row">
+		<div class="m-2">DEADLINE: <%= @project.deadline %></div>
+		<% if current_user == @project_owner %>
+			<div class="mx-1"><%= button_to "Edit Project", edit_project_path(@project.id), class: "btn btn-secondary", method: :get %></div>
+			<div class="mx-1"><%= button_to "Delete Project", project_path(@project.id), class: "btn btn-secondary", method: :delete %></div>
+		<% end %>
+	</div>
+</div>
+
+<hr>
+
+<div class="container my-4">
+	<div class="row">
+			<div class="h2">Project owner</div>
+	</div>
+	<div class="row">
+
+		<div class="m-2 bg-light px-auto">
+			<div class=""><img src="<%=@project_owner.avatar%>" width="130px" class="rounded-circle"></div>
+		</div>
+			<div class="pl-4 pt-5 h3" style="padding-right: 75px;"><%= @project_owner.name %></div>
+		<% if current_user != @project_owner && @project.completed == true %>
+			<% review = Review.find_by("project_id = ? AND sender_id = ? AND recipient_id = ?", @project.id, current_user.id, @project_owner.id) %>
+			<% if review.reviewed == false%>
+				<div class="pl-4 col-sm" style="padding-top: 42px;"><%= link_to "Review!", new_response_path(user_id: @project_owner.id, project_id: @project.id), class: "btn btn-primary" %></div>
+			<% else %>
+				<div class="pl-4 col-sm" style="color: green; padding-top: 55px;">Already reviewed!</div>
+			<% end %>
+
+		<% end %>
+	</div>
+</div>
+
+	
+<div class="container">
+	<div class="row">
+		<div class="h2">Team members</div>
+	</div>
+
+	<div class="row py-3 pl-4">
+		<%= form_tag add_users_path, :method => :post do %>
+			<input type="hidden" value="<%=@project.id%>" name="project_id">
+			<%= select_tag 'user_id', options_for_select(@users.collect{ |u| [u.name, u.id] }), id: "add-users-select" %>
+			<%= submit_tag "Add members", class: "btn btn-primary", id: "project-add-users-btn" %>
+		<% end %>
+	</div>
+
+
+
+<% @project_users.each do |user| %>
+	<div class="row">
+		<div class="m-2 bg-light px-auto">
+			<div class=""><img src="<%= user.avatar %>" width="100px" class="rounded-circle"></div>
+		</div>
+		<div class="pl-4 pt-5 h3 col-sm-2"><%= user.name %></div>
+		<div>
+			<% if user != current_user && @project.completed == true %>
+				<% review = Review.find_by("project_id = ? AND sender_id = ? AND recipient_id = ?", @project.id, current_user.id, user.id) %>
+				<% if review.reviewed == false%>
+					<div class="pl-4 col-sm" style="padding-top: 42px;"><%= link_to "Review!", new_response_path(user_id: user.id, project_id: @project.id), class: "btn btn-primary" %></div>
+				<% else %>
+					<div class="pl-4 col-sm" style="color: green; padding-top: 55px;">Already reviewed!</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+</div>
+
+<hr>
+
+<div class="container">
+	<% if @project.completed == false %>
+		<div class="h2">STATUS: IN PROGRESS</div>
+	<% else %>
+		<div class="h2">STATUS: COMPLETED</div>
+	<% end %>
+	
+	<% if current_user == @project_owner && @project.completed == false%>
+		<div id="project-complete">
+			<%= form_tag complete_project_path, :method => :post do %>
+				<input type="hidden" value="<%=@project.id%>" name="project_id">
+				<%= submit_tag "Complete project", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
