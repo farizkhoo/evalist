@@ -50,11 +50,11 @@ class ProjectsController < ApplicationController
 		end
 		@project = Project.find(params[:id])
 		@project_users = @project.users.where("user_id NOT IN (?)", [@project.owner_id])
-		@user_excluded_list = []
+		@project_owner = User.find(@project.owner_id)
+		@user_excluded_list = [@project_owner]
 		@project_users.each do |user|
 			@user_excluded_list << user.id
 		end
-		@project_owner = User.find(@project.owner_id)
 		@users = User.where("id NOT IN (?)", @user_excluded_list)
 		if current_user != nil
 			@reviews = Review.where("project_id = ? AND sender_id = ? AND reviewed = ?", @project.id, current_user.id, false)
