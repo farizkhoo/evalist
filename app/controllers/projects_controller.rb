@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+
 	def new
 		@project = Project.new
 	end
@@ -11,9 +12,9 @@ class ProjectsController < ApplicationController
 
 		if @project.save
 			@user.projects << @project
-			redirect_to your_projects_path
+			redirect_to your_projects_path, :flash => { :success => "'#{@project.name}' successfully created!" }
 		else
-			render "new"
+			render "new", :flash => { :error => "Failed to create '#{@project.name}'" }
 		end
 	end
 
@@ -24,7 +25,7 @@ class ProjectsController < ApplicationController
 	def update
 		@project = Project.find(params[:id])
 		if @project.update(project_params)
-			redirect_to project_path(@project.id), :flash => { :success => "Project successfully updated" }
+			redirect_to project_path(@project.id), :flash => { :success => "Project successfully updated!" }
 		else
 			redirect_to edit_project_path(@project.id), :flash => { :error => "Failed to update project" }
 		end
@@ -38,21 +39,26 @@ class ProjectsController < ApplicationController
 	end
 
 	def index
-		@projects = Project.all
+		@projects = Project.order(deadline: :DESC)
 		@users = User.all
 		@completed_reviews = Review.where(reviewed: true)
 	end
 
 	def show
+		if current_user == nil
+			redirect_to sign_in_path, :flash => { :error => "Please sign in to continue"}
+		end
 		@project = Project.find(params[:id])
-		@project_users = @project.users
+		@project_users = @project.users.where("user_id NOT IN (?)", [@project.owner_id])
 		@user_excluded_list = []
 		@project_users.each do |user|
 			@user_excluded_list << user.id
 		end
 		@project_owner = User.find(@project.owner_id)
 		@users = User.where("id NOT IN (?)", @user_excluded_list)
-		@reviews = Review.where("project_id = ? AND sender_id = ? AND reviewed = ?", @project.id, current_user.id, false)
+		if current_user != nil
+			@reviews = Review.where("project_id = ? AND sender_id = ? AND reviewed = ?", @project.id, current_user.id, false)
+		end
 	end
 
 	def complete_project
@@ -88,6 +94,6 @@ class ProjectsController < ApplicationController
 
 	private
 	def project_params
-		params.require(:project).permit(:name, :description, :deadline)
+		params.require(:project).permit(:name, :description, :deadline, :budget)
 	end
 end

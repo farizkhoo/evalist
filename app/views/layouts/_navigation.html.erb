@@ -1,5 +1,5 @@
-<div class="">
-    <nav class="<%= params["controller"] == "welcome" && params["action"] == "index" ? "transparent" : "" %> fixed-top navbar-expand-lg navbar-light bg-light row nav-padding">
+<div id="goddamn-navigation">
+    <nav class="navbar-expand-lg navbar-light row nav-padding">
             <a class="navbar-brand"<%= link_to image_tag("logo.png", id:"logo", class:"d-inline-block align-baseline mr-2", width:"20", height:"30") + "Evalist", root_path %></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -7,16 +7,17 @@
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
+                    <a class="nav-link"<%= link_to 'New Project', new_project_path, method: :get %></a>
                     <a class="nav-link"<%= link_to 'View Projects', projects_path, method: :get %></a>
                     <a class="nav-link"<%= link_to 'View Users', users_path, method: :get %></a>
 
                     <% if current_user.nil? %>
 
                     <a class="nav-link"<%= link_to 'Signup', sign_up_path, method: :get %></a>
-                        <a class="nav-link"<%= link_to 'Sign in', sign_in_path, method: :get %></a>
+                    <a class="nav-link"<%= link_to 'Sign in', sign_in_path, method: :get %></a>
                     
                     <% else  %>
-                        <li class="nav-item"><span class="navbar-text">Logged in as</span></li>
+                        <!-- <li class="nav-item"><span class="navbar-text">Logged in as</span></li> -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             

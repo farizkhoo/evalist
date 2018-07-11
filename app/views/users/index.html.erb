@@ -3,7 +3,7 @@
 
 	<% @users.each do |u| %>
 		<div>
-			<img src="<%= u.avatar %>" width="50", class: "avatar-full">
+			<img src="<%= u.avatar %>" width="50" class="avatar-full">
 
 			<%= link_to "#{u.name}", user_path(u.id) %>
 		</div>
